@@ -2,8 +2,6 @@
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
-  z-index: 2;
-  position: fixed;
 }
 
 header nav {
@@ -15,8 +13,7 @@ header nav {
   align-items: center;
   gap: 0 24px;
   margin: auto;
-  max-width: 1248px;
-  height: var(--nav-height);
+  max-width: 1400px;
   padding: 0 24px;
   font-family: var(--body-font-family);
 }
@@ -33,10 +30,8 @@ header nav[aria-expanded='true'] {
 @media (width >= 900px) {
   header nav {
     display: flex;
-    justify-content: space-between;
     gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
+    padding: 12px 0;
   }
 
   header nav[aria-expanded='true'] {
@@ -138,21 +133,23 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
+  flex-basis: 13%;
+  max-width: 220px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
 }
 
 header nav .nav-brand img {
-  width: 128px;
+  width: 100%;
   height: auto;
 }
 
 /* sections */
 header nav .nav-sections {
   grid-area: sections;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
+  margin-right: auto;
   display: none;
   visibility: hidden;
 }
@@ -171,6 +168,7 @@ header nav .nav-sections ul {
 
 header nav .nav-sections ul > li {
   font-weight: 500;
+  font-size: 14px;
 }
 
 header nav .nav-sections ul > li > ul {
@@ -192,35 +190,9 @@ header nav .nav-sections ul > li > ul > li {
     align-self: unset;
   }
 
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
-  }
-
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: 18px;
     margin: 0;
   }
 
@@ -265,4 +237,61 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+  display: flex;
+  align-items: center;
+}
+
+header nav .nav-call-times {
+  font-size: 14px;
+  text-align: right;
+  margin-right: 12px;
+}
+
+header nav .nav-call-times a {
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+header nav .nav-tools a.button {
+  background-color: #fff;
+  padding: 10px 10px 10px 15px;
+  font-size: 10px;
+}
+
+header nav .nav-tools a.button > div {
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+header nav .nav-tools .button {
+  display: flex;
+  align-items: center;
+}
+
+header nav .button + .button {
+  margin-left: 12px;
+  background: transparent;
+  color: #fff;
+  border: 2px solid;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+
+header nav .button + .button::after {
+  top: 15px;
+  right: 15px;
+}
+
+header nav .icon-hotel-search {
+  width: 15px;
+  height: 15px;
+}
+
+header nav .icon-person {
+  filter: contrast(0) brightness(200%);
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }

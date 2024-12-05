@@ -1,0 +1,37 @@
+.table {
+  border: 1px solid;
+  border-radius: 30px;
+  padding: 24px;
+}
+
+.table > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table > div div {
+  flex: 0 1 50%;
+}
+
+.table > div div:first-child {
+  padding-right: 4rem;
+}
+
+.table img {
+  width: 100%;
+  height: 100%;
+}
+
+.table .button-container {
+  text-align: right;
+}
+
+.table .button-container .button {
+  width: 320px;
+  font-size: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-weight: 400;
+  border-radius: 24px;
+}

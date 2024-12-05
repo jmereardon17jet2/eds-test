@@ -1,11 +1,12 @@
 .hero-container .hero-wrapper {
-  max-width: unset;
+  max-width: 1440px;
   padding: 0;
 }
 
 .hero {
-  position: relative;
-  padding: 40px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   min-height: 300px;
 }
 
@@ -17,9 +18,6 @@
 }
 
 .hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
   object-fit: cover;
   box-sizing: border-box;
 }
@@ -28,10 +26,65 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
 }
 
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
-  }
+.hero .carousel-slides-container {
+  flex: 1 0 840px;
+}
+
+.hero .carousel-slides {
+  height: 100%;
+}
+
+.hero.carousel .carousel-navigation-buttons {
+  position: initial;
+  width: 100%;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.hero.carousel .carousel-navigation-buttons > span {
+  font-size: 14px;
+  margin-left: 1rem;
+}
+
+.hero.carousel .carousel-navigation-buttons button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  width: 20px;
+  height: 20px;
+}
+
+.hero.carousel .carousel-navigation-buttons .slide-pause {
+  margin-right: 1rem;
+}
+
+.hero.carousel .carousel-navigation-buttons .slide-pause::after {
+  display: none;
+}
+
+.hero-cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 560px;
+}
+
+.hero-card:nth-child(1n + 2) {
+  flex: 0 1 260px;
+  margin-right: 1.2rem;
+}
+
+.hero-card:last-child {
+  margin-right: 0;
+}
+
+.hero-card > p {
+  margin-top: 0;
+}
+
+.hero-card img {
+  transform: scale(1);
+  max-height: 167px;
 }

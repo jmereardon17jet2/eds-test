@@ -1,4 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
+import { decorateIcons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -57,9 +58,22 @@ function focusNavSection() {
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
  */
 function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach(section => {
     section.setAttribute('aria-expanded', expanded);
   });
+}
+
+function getOpenHours() {
+  const times = fetch(`/opening-hours/times.json`)
+    .then(res => res.json())
+    .then(({ data }) => data);
+  return times;
+}
+
+function getTodaysOpenHours(hours) {
+  const today = new Date().toLocaleString('en-gb', { weekday: 'long' });
+
+  return hours.find(el => el.Day === today);
 }
 
 /**
@@ -71,21 +85,21 @@ function toggleAllNavSections(sections, expanded = false) {
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
+  document.body.style.overflowY = expanded || isDesktop.matches ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
   if (isDesktop.matches) {
-    navDrops.forEach((drop) => {
+    navDrops.forEach(drop => {
       if (!drop.hasAttribute('tabindex')) {
         drop.setAttribute('tabindex', 0);
         drop.addEventListener('focus', focusNavSection);
       }
     });
   } else {
-    navDrops.forEach((drop) => {
+    navDrops.forEach(drop => {
       drop.removeAttribute('tabindex');
       drop.removeEventListener('focus', focusNavSection);
     });
@@ -112,11 +126,21 @@ export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
+  block.textContent = '';
+  let topBar;
+
+  [...fragment.children].forEach(el => {
+    if (el.classList.contains('topbar-container')) topBar = fragment.removeChild(el);
+  });
+
+  if (topBar) block.append(topBar);
+  const hours = await getOpenHours();
+  const todaysOpeningHours = getTodaysOpenHours(hours);
 
   // decorate nav DOM
-  block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
+
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
@@ -124,6 +148,39 @@ export default async function decorate(block) {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
+
+  const navTools = nav.querySelector('.nav-tools');
+  const callTimes = document.createElement('div');
+  callTimes.classList.add('nav-call-times');
+  const callToday = document.createElement('p');
+  callToday.textContent = `Call today from ${todaysOpeningHours.Open}-${todaysOpeningHours.Close}`;
+  const phoneNumber = document.createElement('a');
+  phoneNumber.href = `tel:03330140236`;
+  phoneNumber.textContent = '0333 014 0236';
+  callTimes.append(callToday);
+  callTimes.append(phoneNumber);
+
+  const findBtn = document.createElement('a');
+  findBtn.href = '#search-nav-button';
+  const findBtnIcon = document.createElement('span');
+  findBtnIcon.className = 'icon icon-hotel-search';
+  const findBtnTextContainer = document.createElement('div');
+  const findBtnText = document.createElement('span');
+  findBtnText.textContent = 'Find Hotel /';
+  findBtnTextContainer.append(findBtnText, 'Destination');
+  findBtn.append(findBtnIcon, findBtnTextContainer);
+  findBtn.classList.add('button');
+  const accountBtn = document.createElement('button');
+  const accountBtnIcon = document.createElement('span');
+  accountBtnIcon.className = 'icon icon-person';
+  accountBtn.type = 'button';
+  accountBtn.append(accountBtnIcon, 'myJet2');
+  accountBtn.classList.add('button', 'arrow');
+
+  navTools.append(callTimes);
+  navTools.append(findBtn);
+  navTools.append(accountBtn);
+  decorateIcons(navTools);
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
@@ -134,8 +191,8 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach(navSection => {
+      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop', 'arrow');
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';

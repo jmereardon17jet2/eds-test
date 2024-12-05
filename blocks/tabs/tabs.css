@@ -1,0 +1,73 @@
+.tabs .tabs-list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+  font-size: var(--body-font-size-xs);
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+@media (width >= 600px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-m);
+  }
+}
+
+.tabs .tabs-list button {
+  flex: 0 0 max-content;
+  margin: 0;
+  border: 2px solid #dadada;
+  border-radius: 24px;
+  background-color: transparent;
+  color: #fff;
+  line-height: unset;
+  text-align: initial;
+  text-overflow: unset;
+  overflow: unset;
+  white-space: unset;
+  transition: background-color 0.2s;
+}
+
+.tabs .tabs-list button p {
+  margin: 0;
+}
+
+.tabs .tabs-list button[aria-selected='true'] {
+  background-color: #ffffff;
+  color: #000;
+  cursor: initial;
+}
+
+.tabs .tabs-panel {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs .tabs-panel > div {
+  display: flex;
+  align-items: center;
+}
+
+.tabs .tabs-panel > div p {
+  margin: 0;
+  text-align: left;
+}
+
+.tabs .tabs-panel img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.tabs .tabs-panel[aria-hidden='true'] {
+  display: none;
+}

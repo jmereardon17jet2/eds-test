@@ -1,0 +1,35 @@
+.topbar-container {
+  background: yellow;
+  color: black;
+}
+
+.topbar-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.topbar > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+}
+
+.topbar p {
+  font-size: 20px;
+  margin: 0;
+}
+
+.topbar .button-container p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topbar .button-container a {
+  background: transparent;
+  border: 2px solid;
+  border-radius: 20px;
+  font-size: 14px;
+  margin: 0;
+}
