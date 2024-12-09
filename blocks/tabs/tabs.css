@@ -48,12 +48,14 @@
 .tabs .tabs-panel {
   padding: 24px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .tabs .tabs-panel > div {
   display: flex;
   align-items: center;
+  flex: 0 1 25%;
+  margin-bottom: 1rem;
 }
 
 .tabs .tabs-panel > div p {
