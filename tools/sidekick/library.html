@@ -29,7 +29,9 @@
     <script>
       const library = document.createElement('sidekick-library');
       library.config = {
-        base: '/tools/sidekick/library.json'
+        base: '/tools/sidekick/library.json',
+        tags: '/tools/sidekick/plugins/tags/tags.js',
+        tags_advance: '/tools/sidekick/plugins/tags-advance/tags-advance.js'
       };
 
       document.body.prepend(library);
