@@ -1,5 +1,5 @@
 /* add global styles that can be loaded post LCP here */
-[data-theme='holidays'] {
+:root {
   --alert-base-border-radius: 0.75rem;
   --alert-base-text: 400 0.875rem/1.25rem 'Open Sans', sans-serif;
   --alert-base-text-color: #465568;
@@ -50,6 +50,7 @@
   --breadcrumb-divider-color: #cfd4de;
   --breadcrumb-default-text-color: #465568;
   --breadcrumb-active-text-color: #185bd2;
+
   --checkbox-base-gap: 0.5rem;
   --checkbox-control-base-border: 1px solid;
   --checkbox-control-base-radius: 0.25rem;
