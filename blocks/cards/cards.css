@@ -8,12 +8,12 @@
 }
 
 .cards > ul > li {
-  background-color: var(--background-color);
   text-align: center;
 }
 
 .cards.overlay > ul > li {
   position: relative;
+  color: #fff;
 }
 
 .cards .cards-card-body h2,
@@ -26,7 +26,8 @@
 }
 
 .cards.overlay-header .cards-card-body h2 {
-  background: #3d8ede;
+  background-color: var(--color-background-brand);
+  color: #fff;
   font-size: 14px;
   font-weight: 400;
   padding: 10px;

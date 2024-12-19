@@ -121,6 +121,7 @@ export default async function decorate(block) {
     block.classList.add('carousel');
     block.setAttribute('role', 'region');
     block.setAttribute('aria-roledescription', placeholders.carousel || 'Carousel');
+
     block.append(container);
 
     bindEvents(block);

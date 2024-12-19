@@ -45,7 +45,8 @@
 }
 
 .search-container .search form label,
-.search-container .search form .field {
+.search-container .search form .field,
+#search {
   font-size: 14px;
 }
 

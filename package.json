@@ -6,7 +6,11 @@
   "scripts": {
     "lint:js": "eslint .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
-    "lint": "npm run lint:js && npm run lint:css"
+    "lint": "npm run lint:js && npm run lint:css",
+    "add-tokens": "node scripts/add-tokens.js",
+    "combine-css": "css-combine styles/imports.css > styles/test.css",
+    "merge-css": "cleancss --format beautify -O2 'all:off;mergeAdjacentRules:on;removeEmpty:on' -o styles/styles.css node_modules/@jet2/designsystem.tokens/build/web/holidays/*/*.css styles/base.css",
+    "update-tokens": "ncu @jet2/designsystem.tokens -u && npm i && npm run merge-css"
   },
   "repository": {
     "type": "git",
@@ -20,6 +24,9 @@
   "homepage": "https://github.com/adobe/aem-boilerplate#readme",
   "devDependencies": {
     "@babel/eslint-parser": "7.25.9",
+    "@jet2/designsystem.tokens": "^0.0.10",
+    "clean-css-cli": "^5.6.3",
+    "css-combine": "^1.0.0",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.31.0",

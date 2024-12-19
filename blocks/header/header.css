@@ -1,6 +1,5 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
   width: 100%;
 }
 
@@ -15,7 +14,6 @@ header nav {
   margin: auto;
   max-width: 1400px;
   padding: 0 24px;
-  font-family: var(--body-font-family);
 }
 
 header nav[aria-expanded='true'] {
@@ -63,7 +61,6 @@ header nav .nav-hamburger button {
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
   color: inherit;
   overflow: initial;
   text-overflow: initial;
@@ -135,7 +132,6 @@ header .nav-brand {
   grid-area: brand;
   flex-basis: 13%;
   max-width: 220px;
-  font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
 }
@@ -163,7 +159,6 @@ header nav[aria-expanded='true'] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
 }
 
 header nav .nav-sections ul > li {
@@ -213,7 +208,6 @@ header nav .nav-sections ul > li > ul > li {
     width: 200px;
     top: 150%;
     padding: 16px;
-    background-color: var(--light-color);
     white-space: initial;
   }
 
@@ -226,7 +220,6 @@ header nav .nav-sections ul > li > ul > li {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
@@ -268,15 +261,19 @@ header nav .nav-tools a.button > div {
 header nav .nav-tools .button {
   display: flex;
   align-items: center;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 header nav .button + .button {
   margin-left: 12px;
-  background: transparent;
+  background: #203240;
   color: #fff;
-  border: 2px solid;
+  border-radius: 0 6px 6px 0;
+  border: 1px solid;
   padding-left: 20px;
   padding-right: 40px;
+  font-size: 14px;
 }
 
 header nav .button + .button::after {

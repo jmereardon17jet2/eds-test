@@ -99,7 +99,6 @@
   justify-content: center;
   gap: 6px 12px;
   padding: 12px;
-  background-color: var(--light-color);
   line-height: 0;
 }
 
@@ -111,12 +110,6 @@
   border-radius: 50%;
   background-color: #dadada;
   transition: background-color 0.2s;
-}
-
-.carousel .carousel-slide-indicator button:disabled,
-.carousel .carousel-slide-indicator button:hover,
-.carousel .carousel-slide-indicator button:focus-visible {
-  background-color: var(--text-color);
 }
 
 .carousel .carousel-navigation-buttons {

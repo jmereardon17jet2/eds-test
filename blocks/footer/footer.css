@@ -1,9 +1,4 @@
-footer {
-  font-size: var(--body-font-size-xs);
-}
-
 footer a:any-link {
-  color: #fff;
   text-decoration: underline;
 }
 
