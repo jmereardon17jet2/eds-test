@@ -1,13 +1,14 @@
 /* header and nav layout */
 header .nav-wrapper {
   width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
   grid-template:
-    'hamburger brand tools' var(--nav-height)
+    'hamburger brand tools' 64px
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
   gap: 0 24px;
@@ -18,9 +19,9 @@ header nav {
 
 header nav[aria-expanded='true'] {
   grid-template:
-    'hamburger brand' var(--nav-height)
+    'hamburger brand' 64px
     'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    'tools tools' 64px / auto 1fr;
   overflow-y: auto;
   min-height: 100dvh;
 }
@@ -28,8 +29,7 @@ header nav[aria-expanded='true'] {
 @media (width >= 900px) {
   header nav {
     display: flex;
-    gap: 0 32px;
-    padding: 12px 0;
+    padding: 16px 0;
   }
 
   header nav[aria-expanded='true'] {
@@ -249,6 +249,7 @@ header nav .nav-call-times a {
 header nav .nav-tools a.button {
   background-color: #fff;
   padding: 10px 10px 10px 15px;
+  line-height: normal;
   font-size: 10px;
 }
 

@@ -9,6 +9,9 @@
 
 .search-container .search form {
   padding: 12px 0 40px;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .search-container .search form,
@@ -17,21 +20,20 @@
   min-height: 68px;
 }
 
-.search-container .search form {
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-
 .search-container .search form div {
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
 }
 
+.search-container .search form .field:disabled {
+  background: var(--textinput-disabled-background-color);
+  opacity: 0.1;
+}
+
 .search-container .search form .icon {
   position: absolute;
-  top: 35px;
+  top: 38px;
   left: 10px;
   width: 16px;
   height: 17px;
@@ -58,6 +60,12 @@
 
 .search-container .search form select {
   min-height: 42px;
+}
+
+.search-container .search form button,
+.search-container a.button {
+  margin: var(--button-sm-gap);
+  padding: var(--button-sm-padding);
 }
 
 .search-container .search form button {

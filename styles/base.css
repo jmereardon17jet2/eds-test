@@ -3,98 +3,79 @@ body {
   margin: 0;
   background-color: var(--color-background-primary);
   color: var(--color-text-primary);
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  line-height: 1.44;
+  font: var(--text-body-regular-md);
+  letter-spacing: -0.01em;
 }
-
 body.appear {
   display: block;
 }
-
-header .header,
-footer .footer {
+footer .footer,
+header .header {
   visibility: hidden;
 }
-
-header .header[data-block-status='loaded'],
-footer .footer[data-block-status='loaded'] {
+footer .footer[data-block-status='loaded'],
+header .header[data-block-status='loaded'] {
   visibility: visible;
 }
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font: var(--text-heading-md);
+  font-size: 1.5rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
   scroll-margin: 40px;
 }
-
-p,
+blockquote,
 dl,
 ol,
-ul,
+p,
 pre,
-blockquote {
+ul {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
 }
-
 main > div {
   margin: 40px 16px;
 }
-
+button,
 input,
-textarea,
 select,
-button {
+textarea {
   font: inherit;
 }
-
 table {
   border-collapse: collapse;
   border: none;
   font-size: 14px;
   width: 100%;
 }
-
 tr td {
   padding: 8px;
 }
-
 tr:not(:first-child) td {
   border-top: 1px solid;
 }
-
 table tr:first-child td:first-child {
   font-size: 20px;
 }
-
 table td:not(:first-child) {
   text-align: center;
 }
-
-/* links */
 a:any-link {
   text-decoration: none;
   word-break: break-word;
 }
-
 a:hover {
   text-decoration: underline;
 }
-
-/* buttons */
 a.button:any-link,
 button {
   box-sizing: border-box;
   display: inline-block;
   max-width: 100%;
-  margin: var(--button-sm-gap);
-  font: var(--button-sm-text);
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -102,75 +83,60 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
   border-radius: var(--button-base-border-radius);
-  padding: var(--button-sm-padding);
   background-color: var(--button-primary-default-background-color);
   color: var(--button-primary-default-text-color);
   transition: var(--button-base-transition);
 }
-
-a.button:hover,
 a.button:focus,
-button:hover,
-button:focus {
+a.button:hover,
+button:focus,
+button:hover {
   cursor: pointer;
 }
-
 button:disabled,
 button:disabled:hover {
   cursor: unset;
 }
-
 a.button.secondary,
 button.secondary {
   background-color: unset;
   border: 2px solid;
 }
-
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
 }
-
 .icon {
   display: inline-block;
   height: 24px;
   width: 24px;
 }
-
 .icon img {
   height: 100%;
   width: 100%;
 }
-
-/* sections */
 main > .section {
   margin: 72px 0;
 }
-
 main > .section > div {
   max-width: 1400px;
   margin: auto;
   padding: 0 24px;
 }
-
 main > .section:first-of-type {
   margin-top: 0;
 }
-
 @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;
   }
 }
-
 .default-content-wrapper a {
   text-decoration: underline;
 }
-
-/* section metadata */
-main .section.light,
-main .section.highlight {
+main .section.highlight,
+main .section.light {
   background-color: var(--color-background-secondary);
   margin-left: auto;
   margin-right: auto;
@@ -178,22 +144,19 @@ main .section.highlight {
   border-radius: 12px;
   padding: 40px 0;
 }
-
 .text-align-center {
   text-align: center;
 }
-
 .arrow {
   position: relative;
   padding-right: 16px;
   cursor: pointer;
 }
-
 .arrow::after {
   content: '';
   display: inline-block;
   position: absolute;
-  top: 0.5em;
+  top: 4px;
   right: -1px;
   transform: rotate(135deg);
   width: 6px;
@@ -202,7 +165,6 @@ main .section.highlight {
   border-radius: 0 1px 0 0;
   border-width: 2px 2px 0 0;
 }
-
 .arrow[aria-expanded='true']::after {
   top: unset;
   bottom: 0.5em;

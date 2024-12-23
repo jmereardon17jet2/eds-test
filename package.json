@@ -7,10 +7,8 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
     "lint": "npm run lint:js && npm run lint:css",
-    "add-tokens": "node scripts/add-tokens.js",
-    "combine-css": "css-combine styles/imports.css > styles/test.css",
-    "merge-css": "cleancss --format beautify -O2 'all:off;mergeAdjacentRules:on;removeEmpty:on' -o styles/styles.css node_modules/@jet2/designsystem.tokens/build/web/holidays/*/*.css styles/base.css",
-    "update-tokens": "ncu @jet2/designsystem.tokens -u && npm i && npm run merge-css"
+    "add-tokens": "cleancss --format beautify -O2 'all:off;mergeAdjacentRules:on;removeEmpty:on' -o styles/styles.css node_modules/@jet2/designsystem.tokens/build/web/holidays/*/*.css styles/base.css",
+    "update-tokens": "ncu @jet2/designsystem.tokens -u && npm i && npm run add-tokens"
   },
   "repository": {
     "type": "git",
