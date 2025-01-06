@@ -4,11 +4,11 @@
   "version": "1.3.0",
   "description": "Starter project for Adobe Helix",
   "scripts": {
-    "start": "concurrently \"nodemon --watch 'styles/blocks' --ext 'css' scripts/postcss.js\" \"aem up\"",
+    "start": "concurrently \"nodemon --watch src --ext 'js css' scripts/postcss.js\" \"aem up\"",
     "lint:js": "eslint .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
     "lint": "npm run lint:js && npm run lint:css",
-    "create-tokens-css": "cleancss -O2 --format beautify -o styles/tokens.css node_modules/@jet2/designsystem.tokens/build/web/holidays/*/*.css",
+    "create-tokens-css": "cleancss -O2 --format beautify -o src/styles/tokens.css node_modules/@jet2/designsystem.tokens/build/web/holidays/*/*.css",
     "update-tokens": "ncu @jet2/designsystem.tokens -u && npm i && npm run create-tokens-css",
     "new-block": "node scripts/create-block.config.js"
   },

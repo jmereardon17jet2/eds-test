@@ -1,6 +1,6 @@
 const fs = require('fs');
 const BLOCKS_DIR = 'blocks';
-const BLOCKS_STYLING_DIR = 'styles/blocks';
+const BLOCKS_STYLING_DIR = 'src/styles/blocks';
 const blockName = process.argv[2] || 'new-block';
 const files = [
   `${BLOCKS_DIR}/${blockName}/${blockName}.js`,
