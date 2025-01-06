@@ -37,7 +37,7 @@ export default async function decorate(block) {
 
     // build tab button
     const button = document.createElement('button');
-    button.className = 'tabs-tab';
+    button.className = 'tabs-tab button lg';
     button.id = `tab-${id}`;
     button.innerHTML = tab.innerHTML;
     button.setAttribute('aria-controls', `tabpanel-${id}`);

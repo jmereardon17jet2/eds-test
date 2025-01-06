@@ -21,7 +21,7 @@ footer .footer .columns > div div {
 }
 
 footer .footer .columns > div div h6 {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--spacing-lg);
   font-size: 22px;
   flex: 1 1 100%;
 }

@@ -27,10 +27,10 @@
 }
 
 .topbar .button-container a {
-  padding: 0.625rem 1rem;
+  padding: var(--button-sm-padding);
   color: #fff;
   background: transparent;
   border: 2px solid;
-  border-radius: 999rem;
+  border-radius: var(--radius-full);
   font-size: 14px;
 }

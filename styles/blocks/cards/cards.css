@@ -13,7 +13,7 @@
 
 .cards.overlay > ul > li {
   position: relative;
-  color: #ffffff;
+  color: var(--color-text-inverse);
 }
 
 .cards .cards-card-body h2,
@@ -26,9 +26,9 @@
 }
 
 .cards.overlay-header .cards-card-body h2 {
-  background-color: #d92d20;
-  color: #ffffff;
-  font: 400 0.75rem/1.125rem 'Open Sans',sans-serif;
+  background-color: var(--color-text-error);
+  color: var(--color-text-inverse);
+  font: var(--text-body-regular-sm);
   padding: 10px;
   position: absolute;
   top: 0;

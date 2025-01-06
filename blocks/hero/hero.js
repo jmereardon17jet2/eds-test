@@ -28,7 +28,7 @@ function bindEvents(block) {
     autoplay = setInterval(() => {
       showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
     }, 8000);
-  }, 3000);
+  }, 8000);
 
   block.querySelector('.slide-pause').addEventListener('click', e => {
     const isPlaying = e.target.textContent === '||';
@@ -79,11 +79,26 @@ function showSlide(block, slideIndex = 0) {
   });
 }
 
+function showRecentSearches(recentSearches) {
+  const heroWrapper = document.querySelector('.hero-wrapper');
+  const recentSearchesList = document.createElement('ul');
+  recentSearchesList.className = 'recent-searches';
+  recentSearches.forEach(search => {
+    const LI = document.createElement('li');
+    const P = document.createElement('p');
+    P.textContent = search.destination;
+    LI.append(P);
+    recentSearchesList.append(LI);
+  });
+  heroWrapper.append(recentSearchesList);
+}
+
 export default async function decorate(block) {
   const rows = block.querySelectorAll(':scope > div');
   const slides = block.querySelectorAll(':scope > div div:first-child');
   const featured = block.querySelectorAll(':scope > div div + div');
   const placeholders = await fetchPlaceholders();
+  const recentSearches = localStorage.getItem('J2H_SC_RCNT');
 
   const isSingleSlide = slides.length < 2;
 
@@ -135,4 +150,6 @@ export default async function decorate(block) {
   });
 
   block.append(container);
+
+  if (recentSearches) showRecentSearches(JSON.parse(recentSearches));
 }

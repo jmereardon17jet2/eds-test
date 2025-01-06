@@ -36,7 +36,7 @@
   flex-wrap: wrap;
   flex: 0 1 30%;
   align-items: center;
-  margin: 1.5rem 0;
+  margin: var(--spacing-xl) 0;
 }
 
 .carousel .carousel-slide > div p,
@@ -45,18 +45,18 @@
 }
 
 .carousel .carousel-slide > div h3 {
-  font: 600 1.125rem/1.75rem 'Open Sans',sans-serif;
+  font: var(--text-heading-xs);
 }
 
 .carousel .carousel-slide .icon {
-  background: #ffffff;
+  background: var(--color-icon-inverse);
   min-width: 72px;
   height: 72px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
+  margin-right: var(--spacing-lg);
 }
 
 .carousel .carousel-slide .icon img {
@@ -93,11 +93,11 @@
 }
 
 .carousel .carousel-navigation-buttons > span {
-  margin-right: 1rem;
+  margin-right: var(--spacing-lg);
 }
 
 .carousel .carousel-navigation-buttons button + button {
-  margin-left: 0.25rem;
+  margin-left: var(--spacing-xs);
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -106,7 +106,7 @@
   width: 54px;
   height: 54px;
   margin: 0;
-  border-radius: 999rem;
+  border-radius: var(--radius-full);
   padding: 0;
   background-color: #efefef;
   transition: background-color 0.2s;

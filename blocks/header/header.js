@@ -1,5 +1,4 @@
 import { getMetadata } from '../../scripts/aem.js';
-import { decorateIcons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -63,19 +62,6 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
-function getOpenHours() {
-  const times = fetch(`/opening-hours/times.json`)
-    .then(res => res.json())
-    .then(({ data }) => data);
-  return times;
-}
-
-function getTodaysOpenHours(hours) {
-  const today = new Date().toLocaleString('en-gb', { weekday: 'long' });
-
-  return hours.find(el => el.Day === today);
-}
-
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
@@ -122,67 +108,35 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
   block.textContent = '';
-  let topBar;
-
-  [...fragment.children].forEach(el => {
-    if (el.classList.contains('topbar-container')) topBar = fragment.removeChild(el);
-  });
-
-  if (topBar) block.append(topBar);
-  const hours = await getOpenHours();
-  const todaysOpeningHours = getTodaysOpenHours(hours);
-
-  // decorate nav DOM
   const nav = document.createElement('nav');
+  const navClasses = ['brand', 'sections', 'tools'];
+  const topbarWrapper = document.createElement('div');
+  topbarWrapper.className = 'section nav-topbar';
   nav.id = 'nav';
+
+  if (fragment.firstElementChild.classList.contains('topbar')) topbarWrapper.append(fragment.firstElementChild);
 
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
-  classes.forEach((c, i) => {
+  navClasses.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  const navTools = nav.querySelector('.nav-tools');
-  const callTimes = document.createElement('div');
-  callTimes.classList.add('nav-call-times');
-  const callToday = document.createElement('p');
-  callToday.textContent = `Call today from ${todaysOpeningHours.Open}-${todaysOpeningHours.Close}`;
-  const phoneNumber = document.createElement('a');
-  phoneNumber.href = `tel:03330140236`;
-  phoneNumber.textContent = '0333 014 0236';
-  callTimes.append(callToday);
-  callTimes.append(phoneNumber);
-
-  const findBtn = document.createElement('a');
-  findBtn.href = '#search-nav-button';
-  const findBtnIcon = document.createElement('span');
-  findBtnIcon.className = 'icon icon-hotel-search';
-  const findBtnTextContainer = document.createElement('div');
-  const findBtnText = document.createElement('span');
-  findBtnText.textContent = 'Find Hotel /';
-  findBtnTextContainer.append(findBtnText, 'Destination');
-  findBtn.append(findBtnIcon, findBtnTextContainer);
-  findBtn.classList.add('button');
-  const accountBtn = document.createElement('button');
-  const accountBtnIcon = document.createElement('span');
-  accountBtnIcon.className = 'icon icon-person';
-  accountBtn.type = 'button';
-  accountBtn.append(accountBtnIcon, 'myJet2');
-  accountBtn.classList.add('button', 'arrow');
-
-  navTools.append(callTimes);
-  navTools.append(findBtn);
-  navTools.append(accountBtn);
-  decorateIcons(navTools);
-
   const navBrand = nav.querySelector('.nav-brand');
+
+  if (navBrand) {
+    const link = navBrand.querySelector('a');
+    const picture = navBrand.querySelector('picture');
+    const img = navBrand.querySelector('img');
+    picture.remove();
+    link.append(img);
+  }
+
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -203,21 +157,9 @@ export default async function decorate(block) {
     });
   }
 
-  // hamburger for mobile
-  const hamburger = document.createElement('div');
-  hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
-    </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
-  nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
-
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
-  block.append(navWrapper);
+
+  block.append(topbarWrapper, navWrapper);
 }

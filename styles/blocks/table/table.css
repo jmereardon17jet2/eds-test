@@ -1,5 +1,5 @@
 .table {
-  border: 1px solid #d0d5dd;
+  border: 1px solid var(--button-secondary-default-border-color);
   border-radius: 30px;
   padding: 24px;
 }
@@ -9,7 +9,7 @@
   border: none;
   font-size: 14px;
   width: 100%;
-  background-color: #f9fafb;
+  background-color: var(--color-background-secondary);
 }
 
 .table tr td {
@@ -17,7 +17,7 @@
 }
 
 .table tbody {
-  padding: 1rem;
+  padding: var(--spacing-lg);
 }
 
 .table tr:not(:first-child) td {
@@ -61,6 +61,6 @@
 
 .table .button-container .button {
   width: 320px;
-  border-radius: 999rem;
+  border-radius: var(--radius-full);
   font-weight: 400;
 }

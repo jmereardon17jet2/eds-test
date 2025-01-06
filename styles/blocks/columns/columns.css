@@ -1,0 +1,50 @@
+.columns.border > div div:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.columns > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns img {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.columns .button-container a {
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid;
+  font-size: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-weight: 400;
+  width: 320px;
+}
+
+.columns > div > div {
+  order: 1;
+}
+
+.columns > div > .columns-img-col {
+  order: 0;
+}
+
+.columns > div > .columns-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .columns > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: 24px;
+  }
+
+  .columns > div > div {
+    flex: 1;
+    order: unset;
+  }
+}
