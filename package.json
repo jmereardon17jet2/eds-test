@@ -4,11 +4,13 @@
   "version": "1.3.0",
   "description": "Starter project for Adobe Helix",
   "scripts": {
+    "start": "concurrently \"nodemon --watch 'styles/blocks' --ext 'css' scripts/postcss.js\" \"aem up\"",
     "lint:js": "eslint .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
     "lint": "npm run lint:js && npm run lint:css",
-    "add-tokens": "cleancss --format beautify -O2 'all:off;mergeAdjacentRules:on;removeEmpty:on' -o styles/styles.css node_modules/@jet2/designsystem.tokens/build/web/holidays/*/*.css styles/base.css",
-    "update-tokens": "ncu @jet2/designsystem.tokens -u && npm i && npm run add-tokens"
+    "create-tokens-css": "cleancss -O2 --format beautify -o styles/tokens.css node_modules/@jet2/designsystem.tokens/build/web/holidays/*/*.css",
+    "update-tokens": "ncu @jet2/designsystem.tokens -u && npm i && npm run create-tokens-css",
+    "new-block": "node scripts/create-block.config.js"
   },
   "repository": {
     "type": "git",
@@ -22,12 +24,16 @@
   "homepage": "https://github.com/adobe/aem-boilerplate#readme",
   "devDependencies": {
     "@babel/eslint-parser": "7.25.9",
-    "@jet2/designsystem.tokens": "^0.0.10",
+    "@jet2/designsystem.tokens": "^1.1.1",
     "clean-css-cli": "^5.6.3",
-    "css-combine": "^1.0.0",
+    "concurrently": "^9.1.0",
+    "css-to-object": "^1.1.0",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.31.0",
+    "nodemon": "^3.1.9",
+    "postcss": "^8.4.49",
+    "postcss-var-replace": "^1.0.0",
     "stylelint": "16.10.0",
     "stylelint-config-standard": "36.0.1"
   }
